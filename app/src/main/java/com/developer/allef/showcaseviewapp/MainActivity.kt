@@ -16,6 +16,7 @@ import com.takusemba.spotlight.shape.Circle
 import com.takusemba.spotlight.shape.RoundedRectangle
 import com.takusemba.spotlight.target.CustomTarget
 import com.takusemba.spotlight.target.SimpleTarget
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +24,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val one = findViewById<View>(R.id.one)
+
+        view.post(Runnable(){
+              run(){
+                  val inflater = LayoutInflater.from(this)
+                  val firstRoot = FrameLayout(this)
+                  val first = inflater.inflate(R.layout.layout_target, firstRoot)
+                  OnboardingUtils.createAnimation(this,first,one)
+            }
+        })
         findViewById<View>(R.id.simple_target).setOnClickListener {
             val one = findViewById<View>(R.id.one)
             val inflater = LayoutInflater.from(this)
